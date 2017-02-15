@@ -61,19 +61,20 @@ var sortable = new Sortable(el, {
 	animation: 150,  // ms, animation speed moving items when sorting, `0` — without animation
 	handle: ".my-handle",  // Drag handle selector within list items
 	filter: ".ignore-elements",  // Selectors that do not lead to dragging (String or Function)
+  preventOnFilter: true, // Call `event.preventDefault()` when triggered `filter`
 	draggable: ".item",  // Specifies which items inside the element should be sortable
 	ghostClass: "sortable-ghost",  // Class name for the drop placeholder
 	chosenClass: "sortable-chosen",  // Class name for the chosen item
 	dataIdAttr: 'data-id',
-	
+
 	forceFallback: false,  // ignore the HTML5 DnD behaviour and force the fallback to kick in
 	fallbackClass: "sortable-fallback"  // Class name for the cloned DOM Element when using forceFallback
 	fallbackOnBody: false  // Appends the cloned DOM Element into the Document's Body
-	
+
 	scroll: true, // or HTMLElement
 	scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
 	scrollSpeed: 10, // px
-	
+
 	setData: function (dataTransfer, dragEl) {
 		dataTransfer.setData('Text', dragEl.textContent);
 	},
@@ -82,7 +83,7 @@ var sortable = new Sortable(el, {
 	onStart: function (/**Event*/evt) {
 		evt.oldIndex;  // element index within parent
 	},
-	
+
 	// dragging ended
 	onEnd: function (/**Event*/evt) {
 		evt.oldIndex;  // element's old index within parent
@@ -116,7 +117,7 @@ var sortable = new Sortable(el, {
 	onFilter: function (/**Event*/evt) {
 		var itemEl = evt.item;  // HTMLElement receiving the `mousedown|tapstart` event.
 	},
-	
+
 	// Event when you move an item in the list or between lists
 	onMove: function (/**Event*/evt) {
 		// Example: http://jsbin.com/tuyafe/1/edit?js,output
@@ -297,7 +298,7 @@ Demo: http://jsbin.com/pucurizace/edit?html,css,js,output
 If set to `true`, the page (or sortable-area) scrolls when coming to an edge.
 
 Demo:
- - `window`: http://jsbin.com/boqugumiqi/1/edit?html,js,output 
+ - `window`: http://jsbin.com/boqugumiqi/1/edit?html,js,output
  - `overflow: hidden`: http://jsbin.com/kohamakiwi/1/edit?html,js,output
 
 
@@ -665,13 +666,13 @@ Now you can use `jquery.fn.sortable.js`:<br/>
 
 ```js
   $("#list").sortable({ /* options */ }); // init
-  
+
   $("#list").sortable("widget"); // get Sortable instance
-  
+
   $("#list").sortable("destroy"); // destroy Sortable instance
-  
+
   $("#list").sortable("{method-name}"); // call an instance method
-  
+
   $("#list").sortable("{method-name}", "foo", "bar"); // call an instance method with parameters
 ```
 
@@ -682,7 +683,7 @@ And `grunt jquery:mySortableFunc` → `jquery.fn.mySortableFunc.js`
 
 ### Contributing (Issue/PR)
 
-Please, [read this](CONTRIBUTING.md). 
+Please, [read this](CONTRIBUTING.md).
 
 
 ---
@@ -710,4 +711,3 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
