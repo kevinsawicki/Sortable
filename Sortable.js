@@ -25,6 +25,7 @@
 	"use strict";
 
 	var dragEl,
+		dragElID,
 		parentEl,
 		ghostEl,
 		cloneEl,
@@ -321,6 +322,9 @@
 
 				rootEl = el;
 				dragEl = target;
+				if (options.handleReplacedDragElement) {
+					dragElID = target.getAttribute('id');
+				}
 				parentEl = dragEl.parentNode;
 				nextEl = dragEl.nextSibling;
 				activeGroup = options.group;
@@ -576,6 +580,12 @@
 			}
 
 			moved = true;
+
+			if (options.handleReplacedDragElement && !dragEl.parentNode && dragElID) {
+				dragEl = document.getElementById(dragElID) || dragEl;
+				_toggleClass(dragEl, this.options.ghostClass, true);
+				console.log('replaced dragged element');
+			}
 
 			if (activeGroup && !options.disabled &&
 				(isOwner
